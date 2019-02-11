@@ -5,9 +5,13 @@ Created on Mon Feb 11 17:37:42 2019
 @author: jag378
 """
 
-# monthly_sales.py
+import operator
+import os
+import pandas
+import matplotlib.pyplot as mpl
 
-# TODO: import some modules and/or packages here
+
+# monthly_sales.py
 
 # TODO: write some Python code here to produce the desired functionality...
 
