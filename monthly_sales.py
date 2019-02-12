@@ -28,6 +28,11 @@ print(csv_data)
 monthly_sales_total = csv_data["sales price"].sum()
 print(monthly_sales_total)
 
+by_product = csv_data.groupby(["product"]).sum()
+print(by_product)
+
+by_product = csv_data.groupby(["units sold"]).sum()
+print(by_product)
 
 print("-----------------------")
 print("MONTH: March 2018")
