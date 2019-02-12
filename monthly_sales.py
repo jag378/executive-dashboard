@@ -13,25 +13,29 @@ import matplotlib.pyplot as mpl
 
 # monthly_sales.py
 
-#test2
+csv_location = "sales-201801.csv" # TODO: allow user to specify
+
+csv_location = os.path.join(os.path.dirname(__file__), "data", csv_location)
+
+csv_data = pandas.read_csv(csv_location)
+
+print(csv_data)
 
 
-# TODO: write some Python code here to produce the desired functionality...
-
-print("-----------------------)
+print("-----------------------")
 print("MONTH: March 2018")
 
-print("-----------------------)
+print("-----------------------")
 print("CRUNCHING THE DATA...")
 
-print("-----------------------)
+print("-----------------------")
 print("TOTAL MONTHLY SALES: $12,000.71")
 
-print("-----------------------)
+print("-----------------------")
 print("TOP SELLING PRODUCTS:")
 print("  1) Button-Down Shirt: $6,960.35")
 print("  2) Super Soft Hoodie: $1,875.00")
 print("  3) etc.")
 
-print("-----------------------)
+print("-----------------------")
 print("VISUALIZING THE DATA...")
