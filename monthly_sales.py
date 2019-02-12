@@ -13,13 +13,20 @@ import matplotlib.pyplot as mpl
 
 # monthly_sales.py
 
-csv_location = "sales-201801.csv" # TODO: allow user to specify
+#Pulling Data from CSV File Using Pandas
+
+csv_location = "sales-201803.csv" # TODO: allow user to specify
 
 csv_location = os.path.join(os.path.dirname(__file__), "data", csv_location)
 
 csv_data = pandas.read_csv(csv_location)
 
 print(csv_data)
+
+#Calculating Sales Data
+
+monthly_sales_total = csv_data["sales price"].sum()
+print(monthly_sales_total)
 
 
 print("-----------------------")
