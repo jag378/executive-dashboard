@@ -18,6 +18,11 @@ import numpy
 month_input = input("Please input a month for sale's data (01 for January, 12 for December):")
 year_input = input("Please input a 4-digit year for sale's data:")
 
+
+#IF Statement to Correctly Restart Program for an incorrect value
+
+
+
 csv_location = "sales-" + year_input + month_input + ".csv"
 
 csv_location = os.path.join(os.path.dirname(__file__), "data", csv_location)
