@@ -15,7 +15,10 @@ import numpy
 
 #Pulling Data from CSV File Using Pandas
 
-csv_location = "sales-201803.csv"
+month_input = input("Please input a month for sale's data (01 for January, 12 for December):")
+year_input = input("Please input a 4-digit year for sale's data:")
+
+csv_location = "sales-" + year_input + month_input + ".csv"
 
 csv_location = os.path.join(os.path.dirname(__file__), "data", csv_location)
 
