@@ -23,9 +23,13 @@ csv_data = pandas.read_csv(csv_location)
 
 #Month and Year Printout
 
-date_lookup = {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}
+month_lookup = {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}
 
-user_date = input("Date:")
+
+user_month_parse = csv_location[67:69]
+user_month = month_lookup[user_month_parse]
+
+user_year = csv_location[63:67]
 
 #Calculating Sales Data
 
@@ -34,7 +38,8 @@ def price_dollar(price):
     return "${0:,.2f}".format(price)
 
 monthly_sales_total = csv_data["sales price"].sum()
-print("TOTAL MONTHLY SALES: " + str(price_dollar(monthly_sales_total)))
+print("\n")
+print("TOTAL " + user_month + " " + user_year + " MONTHLY SALES: " + str(price_dollar(monthly_sales_total)))
 
 by_product = csv_data.groupby(["product"]).sum()
 
@@ -56,7 +61,7 @@ for index, row in by_product_sorted.iterrows():
     best_sellers.append(sales_dict)
     ranking = ranking + 1
 
-print("THIS MONTH'S TOP SELLERS:")
+print(user_month + " " + user_year + "'s TOP SELLERS:")
 headers = list(best_sellers)
 for row in best_sellers:
     print(str(row["Rank"]) + ". " + str(row["Name"]) + " " + price_dollar(row["Sales"]))
