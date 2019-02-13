@@ -9,7 +9,7 @@ import operator
 import os
 import pandas
 import matplotlib.pyplot as mpl
-
+import numpy
 
 # monthly_sales.py
 
@@ -35,6 +35,8 @@ print(by_product)
 by_product_sorted = by_product.sort_values("sales price",ascending=False)
 print(by_product_sorted)
 
+by_product_sorted.insert(0, "My 2nd Column", "1")
+print(by_product_sorted)
 
 print("-----------------------")
 print("MONTH: March 2018")
