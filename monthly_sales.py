@@ -35,8 +35,12 @@ print(by_product)
 by_product_sorted = by_product.sort_values("sales price",ascending=False)
 print(by_product_sorted)
 
-by_product_sorted.insert(0, "My 2nd Column", "1")
-print(by_product_sorted)
+#Found code to add rankings to specific rows from source: https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas
+
+for index, row in by_product_sorted.iterrows():
+    print(row)
+    print(1)
+
 
 print("-----------------------")
 print("MONTH: March 2018")
