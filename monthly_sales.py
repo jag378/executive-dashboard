@@ -35,6 +35,8 @@ print(by_product)
 by_product_sorted = by_product.sort_values("sales price",ascending=False)
 print(by_product_sorted)
 
+print("\n")
+
 #Found code to add rankings to specific rows from source: https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas
 
 ranking = 1
@@ -44,7 +46,14 @@ best_sellers = []
 for index, row in by_product_sorted.iterrows():
     print(ranking)
     print(index, row)
+    print("\n")
+    
+    sales_dict = {"rank": ranking, "Name": row["units sold"], "Sales": row["sales price"]}
+    best_sellers.append(sales_dict)
     ranking = ranking + 1
+
+for row in best_sellers:
+    print(row)
 
 
 print("-----------------------")
