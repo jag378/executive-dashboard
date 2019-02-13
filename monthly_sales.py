@@ -15,25 +15,23 @@ import numpy
 
 #Pulling Data from CSV File Using Pandas
 
-csv_location = "sales-201803.csv" # TODO: allow user to specify
+csv_location = "sales-201803.csv"
 
 csv_location = os.path.join(os.path.dirname(__file__), "data", csv_location)
 
 csv_data = pandas.read_csv(csv_location)
 
-print(csv_data)
 
 #Calculating Sales Data
 
 monthly_sales_total = csv_data["sales price"].sum()
-print(monthly_sales_total)
+print("TOTAL MONTHLY SALES: " + str(monthly_sales_total))
 
 by_product = csv_data.groupby(["product"]).sum()
-print(by_product)
 
 #Sort the Products Highest to Lowest
+
 by_product_sorted = by_product.sort_values("sales price",ascending=False)
-print(by_product_sorted)
 
 print("\n")
 
@@ -44,14 +42,12 @@ best_sellers = []
 
 
 for index, row in by_product_sorted.iterrows():
-    print(ranking)
-    print(index, row)
-    print("\n")
     #could not find how to print name of product, so referred to Prof. Rossetti's code for the row.name formula
     sales_dict = {"Rank": ranking, "Name": row.name, "Sales": row["sales price"]}
     best_sellers.append(sales_dict)
     ranking = ranking + 1
 
+print("THIS MONTH'S TOP SELLERS:")
 for row in best_sellers:
     print(str(row["Rank"]) + ". " + str(row["Name"]) + " " + str(row["Sales"]))
 
