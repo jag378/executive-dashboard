@@ -31,8 +31,10 @@ print(monthly_sales_total)
 by_product = csv_data.groupby(["product"]).sum()
 print(by_product)
 
-by_product = csv_data.groupby(["units sold"]).sum()
-print(by_product)
+#Sort the Products Highest to Lowest
+by_product_sorted = by_product.sort_values("sales price",ascending=False)
+print(by_product_sorted)
+
 
 print("-----------------------")
 print("MONTH: March 2018")
