@@ -24,8 +24,12 @@ csv_data = pandas.read_csv(csv_location)
 
 #Calculating Sales Data
 
+#Converting Price to Dollar Format
+def price_dollar(price):
+    return "${0:,.2f}".format(price)
+
 monthly_sales_total = csv_data["sales price"].sum()
-print("TOTAL MONTHLY SALES: " + str(monthly_sales_total))
+print("TOTAL MONTHLY SALES: " + str(price_dollar(monthly_sales_total)))
 
 by_product = csv_data.groupby(["product"]).sum()
 
@@ -50,13 +54,22 @@ for index, row in by_product_sorted.iterrows():
 print("THIS MONTH'S TOP SELLERS:")
 headers = list(best_sellers)
 for row in best_sellers:
-    print(str(row["Rank"]) + ". " + str(row["Name"]) + " " + str(row["Sales"]))
+    print(str(row["Rank"]) + ". " + str(row["Name"]) + " " + price_dollar(row["Sales"]))
 
 
-#Printing the Graph
+#Printing the Bar Graph
 
 bar_chart = pandas.DataFrame(best_sellers)
 test = bar_chart.plot.bar(x="Name", y="Sales")
+
+#Sizing and Format
+mpl.title("Monthly Sales by Product")
+mpl.xlabel("Product Name")
+mpl.ylabel("$ Sales")
+
+
+mpl.show()
+
 
 print("-----------------------")
 print("MONTH: March 2018")
