@@ -38,9 +38,12 @@ print(by_product_sorted)
 #Found code to add rankings to specific rows from source: https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas
 
 ranking = 1
+best_sellers = []
+
 
 for index, row in by_product_sorted.iterrows():
     print(ranking)
+    print(index, row)
     ranking = ranking + 1
 
 
