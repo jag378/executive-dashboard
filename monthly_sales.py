@@ -48,9 +48,15 @@ for index, row in by_product_sorted.iterrows():
     ranking = ranking + 1
 
 print("THIS MONTH'S TOP SELLERS:")
+headers = list(best_sellers)
 for row in best_sellers:
     print(str(row["Rank"]) + ". " + str(row["Name"]) + " " + str(row["Sales"]))
 
+
+#Printing the Graph
+
+bar_chart = pandas.DataFrame(best_sellers)
+test = bar_chart.plot.bar(x="Name", y="Sales")
 
 print("-----------------------")
 print("MONTH: March 2018")
