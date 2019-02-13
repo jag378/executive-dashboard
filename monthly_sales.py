@@ -53,8 +53,7 @@ for index, row in by_product_sorted.iterrows():
     ranking = ranking + 1
 
 for row in best_sellers:
-    print(row)
-    print(row["Rank"], row["Name"],row["Sales"])
+    print(str(row["Rank"]) + ". " + str(row["Name"]) + " " + str(row["Sales"]))
 
 
 print("-----------------------")
