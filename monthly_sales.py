@@ -47,13 +47,14 @@ for index, row in by_product_sorted.iterrows():
     print(ranking)
     print(index, row)
     print("\n")
-    
-    sales_dict = {"rank": ranking, "Name": row["units sold"], "Sales": row["sales price"]}
+    #could not find how to print name of product, so referred to Prof. Rossetti's code for the row.name formula
+    sales_dict = {"Rank": ranking, "Name": row.name, "Sales": row["sales price"]}
     best_sellers.append(sales_dict)
     ranking = ranking + 1
 
 for row in best_sellers:
     print(row)
+    print(row["Rank"], row["Name"],row["Sales"])
 
 
 print("-----------------------")
