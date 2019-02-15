@@ -51,6 +51,8 @@ print("TOTAL " + user_month + " " + user_year + " MONTHLY SALES: " + str(price_d
 
 by_product = csv_data.groupby(["product"]).sum()
 
+#found formula for groupby on stackoverflow
+
 #Sort the Products Highest to Lowest
 
 by_product_sorted = by_product.sort_values("sales price",ascending=False)
@@ -81,10 +83,10 @@ bar_chart = pandas.DataFrame(best_sellers)
 test = bar_chart.plot.bar(x="Name", y="Sales")
 
 #Sizing and Format
-mpl.title("Monthly Sales by Product")
+
+mpl.title(user_month + " " + user_year + " Sales by Product")
 mpl.xlabel("Product Name")
 mpl.ylabel("$ Sales")
-
 
 mpl.show()
 
