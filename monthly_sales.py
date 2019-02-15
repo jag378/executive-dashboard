@@ -10,6 +10,7 @@ import os
 import pandas
 import matplotlib.pyplot as mpl
 import numpy
+import matplotlib.ticker as mtick
 
 # monthly_sales.py
 
@@ -42,7 +43,8 @@ try:
     def price_dollar(price):
         return "${0:,.2f}".format(price)
 
-    monthly_sales_total = csv_data["sales price"].sum()
+    monthly_sales_total = csv_data["sales price"].sum()  
+    
     print("\n")
     print("TOTAL " + user_month + " " + user_year + " MONTHLY SALES: " + str(price_dollar(monthly_sales_total)))
 
@@ -57,34 +59,24 @@ try:
     print("\n")
 
 #Found code to add rankings to specific rows from source: https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas
-
     ranking = 1
     best_sellers = []
-
-
     for index, row in by_product_sorted.iterrows():
         #could not find how to print name of product, so referred to Prof. Rossetti's code for the row.name formula
         sales_dict = {"Rank": ranking, "Name": row.name, "Sales": row["sales price"]}
         best_sellers.append(sales_dict)
         ranking = ranking + 1
-
     print(user_month + " " + user_year + "'s TOP SELLERS:")
     headers = list(best_sellers)
     for row in best_sellers:
-        print(str(row["Rank"]) + ". " + str(row["Name"]) + ": " + price_dollar(row["Sales"]))
-
-
+        print(str(row["Rank"]) + ". " + str(row["Name"]) + " " + price_dollar(row["Sales"]))
 #Printing the Bar Graph
-
     bar_chart = pandas.DataFrame(best_sellers)
     test = bar_chart.plot.bar(x="Name", y="Sales")
-
 #Sizing and Format
-
     mpl.title(user_month + " " + user_year + " Sales by Product")
     mpl.xlabel("Product Name")
     mpl.ylabel("$ Sales")
-
     mpl.show()
 
     
