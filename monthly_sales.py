@@ -15,29 +15,31 @@ import numpy
 
 #Pulling Data from CSV File Using Pandas
 
-month_input = input("Please input a month for sale's data (01 for January, 12 for December):")
-year_input = input("Please input a 4-digit year for sale's data:")
+month_input = input("Please input a month for sales data (01 for January, 12 for December):")
+year_input = input("Please input a 4-digit year for sales data:")
 
 
-#IF Statement to Correctly Restart Program for an incorrect value
+#Try/Except Statement to Correctly Restart Program for an incorrect value
 
+try:
+    csv_location = "sales-" + year_input + month_input + ".csv"
 
+    csv_found = os.path.join(os.path.dirname(__file__), "data", csv_location)  
 
-csv_location = "sales-" + year_input + month_input + ".csv"
-
-csv_location = os.path.join(os.path.dirname(__file__), "data", csv_location)
-
-csv_data = pandas.read_csv(csv_location)
-
+    csv_data = pandas.read_csv(csv_found)
+    print(csv_data)
+    
+except FileNotFoundError:
+    print("the file does not exist")
 #Month and Year Printout
 
 month_lookup = {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}
 
 
-user_month_parse = csv_location[67:69]
+user_month_parse = csv_found[67:69]
 user_month = month_lookup[user_month_parse]
 
-user_year = csv_location[63:67]
+user_year = csv_found[63:67]
 
 #Calculating Sales Data
 
@@ -90,21 +92,5 @@ mpl.ylabel("$ Sales")
 
 mpl.show()
 
+csv_location = []
 
-print("-----------------------")
-print("MONTH: March 2018")
-
-print("-----------------------")
-print("CRUNCHING THE DATA...")
-
-print("-----------------------")
-print("TOTAL MONTHLY SALES: $12,000.71")
-
-print("-----------------------")
-print("TOP SELLING PRODUCTS:")
-print("  1) Button-Down Shirt: $6,960.35")
-print("  2) Super Soft Hoodie: $1,875.00")
-print("  3) etc.")
-
-print("-----------------------")
-print("VISUALIZING THE DATA...")
