@@ -29,68 +29,70 @@ try:
     csv_data = pandas.read_csv(csv_found)
     print(csv_data)
     
-except FileNotFoundError:
-    print("the file does not exist")
-#Month and Year Printout
-
-month_lookup = {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}
+    month_lookup = {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}
 
 
-user_month_parse = csv_found[67:69]
-user_month = month_lookup[user_month_parse]
-
-user_year = csv_found[63:67]
+    user_month_parse = csv_found[67:69]
+    user_month = month_lookup[user_month_parse]
+    
+    user_year = csv_found[63:67]
 
 #Calculating Sales Data
 
 #Converting Price to Dollar Format
-def price_dollar(price):
-    return "${0:,.2f}".format(price)
+    def price_dollar(price):
+        return "${0:,.2f}".format(price)
 
-monthly_sales_total = csv_data["sales price"].sum()
-print("\n")
-print("TOTAL " + user_month + " " + user_year + " MONTHLY SALES: " + str(price_dollar(monthly_sales_total)))
+    monthly_sales_total = csv_data["sales price"].sum()
+    print("\n")
+    print("TOTAL " + user_month + " " + user_year + " MONTHLY SALES: " + str(price_dollar(monthly_sales_total)))
 
-by_product = csv_data.groupby(["product"]).sum()
+    by_product = csv_data.groupby(["product"]).sum()
 
 #found formula for groupby on stackoverflow
 
 #Sort the Products Highest to Lowest
 
-by_product_sorted = by_product.sort_values("sales price",ascending=False)
+    by_product_sorted = by_product.sort_values("sales price",ascending=False)
 
-print("\n")
+    print("\n")
 
 #Found code to add rankings to specific rows from source: https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas
 
-ranking = 1
-best_sellers = []
+    ranking = 1
+    best_sellers = []
 
 
-for index, row in by_product_sorted.iterrows():
-    #could not find how to print name of product, so referred to Prof. Rossetti's code for the row.name formula
-    sales_dict = {"Rank": ranking, "Name": row.name, "Sales": row["sales price"]}
-    best_sellers.append(sales_dict)
-    ranking = ranking + 1
+    for index, row in by_product_sorted.iterrows():
+        #could not find how to print name of product, so referred to Prof. Rossetti's code for the row.name formula
+        sales_dict = {"Rank": ranking, "Name": row.name, "Sales": row["sales price"]}
+        best_sellers.append(sales_dict)
+        ranking = ranking + 1
 
-print(user_month + " " + user_year + "'s TOP SELLERS:")
-headers = list(best_sellers)
-for row in best_sellers:
-    print(str(row["Rank"]) + ". " + str(row["Name"]) + " " + price_dollar(row["Sales"]))
+    print(user_month + " " + user_year + "'s TOP SELLERS:")
+    headers = list(best_sellers)
+    for row in best_sellers:
+        print(str(row["Rank"]) + ". " + str(row["Name"]) + " " + price_dollar(row["Sales"]))
 
 
 #Printing the Bar Graph
 
-bar_chart = pandas.DataFrame(best_sellers)
-test = bar_chart.plot.bar(x="Name", y="Sales")
+    bar_chart = pandas.DataFrame(best_sellers)
+    test = bar_chart.plot.bar(x="Name", y="Sales")
 
 #Sizing and Format
 
-mpl.title(user_month + " " + user_year + " Sales by Product")
-mpl.xlabel("Product Name")
-mpl.ylabel("$ Sales")
+    mpl.title(user_month + " " + user_year + " Sales by Product")
+    mpl.xlabel("Product Name")
+    mpl.ylabel("$ Sales")
 
-mpl.show()
+    mpl.show()
 
-csv_location = []
+    
+except FileNotFoundError:
+    print("the file does not exist")
+#Month and Year Printout
+
+
+
 
