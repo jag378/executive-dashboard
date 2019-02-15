@@ -27,7 +27,6 @@ try:
     csv_found = os.path.join(os.path.dirname(__file__), "data", csv_location)  
 
     csv_data = pandas.read_csv(csv_found)
-    print(csv_data)
     
     month_lookup = {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}
 
@@ -72,7 +71,7 @@ try:
     print(user_month + " " + user_year + "'s TOP SELLERS:")
     headers = list(best_sellers)
     for row in best_sellers:
-        print(str(row["Rank"]) + ". " + str(row["Name"]) + " " + price_dollar(row["Sales"]))
+        print(str(row["Rank"]) + ". " + str(row["Name"]) + ": " + price_dollar(row["Sales"]))
 
 
 #Printing the Bar Graph
