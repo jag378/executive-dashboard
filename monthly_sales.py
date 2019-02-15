@@ -90,8 +90,8 @@ try:
 
     
 except FileNotFoundError:
-    print("the file does not exist")
-#Month and Year Printout
+    print("\n")
+    print("Sorry, that file doesn't exist! You can rerun the program now if you'd like to input a different month.")
 
 
 
